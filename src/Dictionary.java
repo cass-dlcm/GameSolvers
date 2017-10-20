@@ -21,16 +21,43 @@ public class Dictionary {
                         if (s.charAt(i) == in[i]) {
                             if (i == in.length - 1) {
                                 result.add(s);
+                                for(int a=0;a<s.length();a++) {
+                                    if(s.charAt(a)>=97 && s.charAt(a) <122) {
+                                        boolean isGuessed = false;
+                                        for(char c : guessed) {
+                                            if (c == s.charAt(a)) {
+                                                isGuessed = true;
+                                            }
+                                        }
+                                        if(!isGuessed) {
+                                            Hangman.notGuessed[(int)(s.charAt(a))-97]++;
+                                        }
+                                    }
+                                }
                             }
                         } else {
                             break;
                         }
-                    } else if (i == in.length - 1) {
-                        result.add(s);
                     } else {
                         for (char c : guessed) {
                             if (c == s.charAt(i)) {
                                 break outer;
+                            }
+                        }
+                        if (i == in.length - 1) {
+                            result.add(s);
+                            for(int a=0;a<s.length();a++) {
+                                if(s.charAt(a)>=97 && s.charAt(a) <122) {
+                                    boolean isGuessed = false;
+                                    for(char c : guessed) {
+                                        if (c == s.charAt(a)) {
+                                            isGuessed = true;
+                                        }
+                                    }
+                                    if(!isGuessed) {
+                                        Hangman.notGuessed[(int)(s.charAt(a))-97]++;
+                                    }
+                                }
                             }
                         }
                     }
